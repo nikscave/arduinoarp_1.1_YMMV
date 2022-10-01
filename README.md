@@ -1,6 +1,6 @@
 # arduinoarp_1.1
 Revision 1.1 of the arpeggiator module based on Arduino nano
-Link to original project (https://www.ymnkmusic.com/diy-synths/arpeggiator/)
+ Link to original project (https://www.ymnkmusic.com/diy-synths/arpeggiator/)
 
 
 Updates from YourModulesMayVary:
