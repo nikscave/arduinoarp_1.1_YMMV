@@ -5,3 +5,4 @@ Amended to work with push buttons using a 4067 Multiplexor and a couple of 74HC5
 
 Schematic looks noisy but its a really simple build, just lots of buttons an LEDS's.
 
+![Schematic](https://nikscave.github.io/YMNKARP_YMMV.png)
