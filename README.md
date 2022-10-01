@@ -1,5 +1,6 @@
 # arduinoarp_1.1
 Revision 1.1 of the arpeggiator module based on Arduino nano
+Link to original project (https://www.ymnkmusic.com/diy-synths/arpeggiator/)
 
 Amended to work with push buttons using a 4067 Multiplexor and a couple of 74HC595 Shift registers.
 
