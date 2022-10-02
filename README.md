@@ -10,4 +10,5 @@ Schematic looks noisy but its a really simple build, just lots of buttons and LE
 
 ![Module](https://nikscave.github.io/Arp_YMMV.png)
 ![Schematic](https://nikscave.github.io/YMNKARP_YMMV.png)
+![ModuleFinal](https://nikscave.github.io/ARP_final_ish.JPG)
 
