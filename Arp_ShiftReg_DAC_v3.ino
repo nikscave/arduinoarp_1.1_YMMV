@@ -52,6 +52,7 @@ int s2 = 6;
 int s3 = 7;
 byte data;
 int dataRead = 3;
+int sigRead = 9; // 8 or 9 can be used, incase you solder the wrong pin like I just did :-)
 
 int controlPin[] = {s0, s1, s2, s3};
 
@@ -108,7 +109,8 @@ void setup ()
   pinMode(clockPin, OUTPUT);
   pinMode(dataPin, OUTPUT);
   pinMode(dataRead, INPUT);
-pinMode(9, INPUT);
+  pinMode(sigRead, INPUT);
+   
   pinMode(s0, OUTPUT); 
   pinMode(s1, OUTPUT); 
   pinMode(s2, OUTPUT); 
