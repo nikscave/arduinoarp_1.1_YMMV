@@ -52,7 +52,7 @@ int s2 = 6;
 int s3 = 7;
 byte data;
 int dataRead = 3;
-int sigRead = 9; // 8 or 9 can be used, incase you solder the wrong pin like I just did :-)
+int trigRead = 9; // 8 or 9 can be used, incase you solder the wrong pin like I just did :-)
 
 int controlPin[] = {s0, s1, s2, s3};
 
@@ -109,8 +109,7 @@ void setup ()
   pinMode(clockPin, OUTPUT);
   pinMode(dataPin, OUTPUT);
   pinMode(dataRead, INPUT);
-  pinMode(sigRead, INPUT);
-   
+pinMode(trigRead, INPUT);
   pinMode(s0, OUTPUT); 
   pinMode(s1, OUTPUT); 
   pinMode(s2, OUTPUT); 
@@ -141,7 +140,7 @@ int noteToVolt(int noteIn) {
 void loop() {
  
 /*
- * // testing only for when no trigger input is available
+ // testing only for when no trigger input is available
 if (millis() - clock_tick > CLOCK_TIME){
   clock_tick = millis();
   if (newClockState == LOW) {
@@ -177,7 +176,7 @@ if (millis() - clock_tick > CLOCK_TIME){
   }
 
   // comment out below line if testing without trigger input
-   newClockState = digitalRead(9);//analogRead(0) > 200; // original code no longer needed
+   newClockState = digitalRead(trigRead);//analogRead(0) > 200; // original code no longer needed
 
     startPot = analogRead(1);
     rangePot = analogRead(6);
@@ -210,6 +209,7 @@ Serial.println();
     } else {
         mode = arpRandom;
     }
+
 
    for (int i = 0; i < NOTE_COUNT; i++) {
         notes[i] = LED_STATE_STRUCT[i].ON;//digitalRead(NOTE_PIN_START + i) == HIGH; ////amended code for push buttons
@@ -258,6 +258,14 @@ Serial.println();
     }
 
     if (newClockState != clockState) {
+
+
+
+  for(int i = 0; i < 14; i ++){
+      Serial.print(LED_STATE_STRUCT[i].ON);
+  }
+  Serial.println();
+
 
 
        
@@ -311,8 +319,8 @@ Serial.println();
 
               if (notes[iterator%NOTE_COUNT]) {
 
-              //LED_STATE_STRUCT[iterator-3].TRIGGERED = true;
-              //ledTrigger(); // future enhancement ideas, flash closest led to active note
+              LED_STATE_STRUCT[iterator-3].TRIGGERED = true;
+              ledTrigger(); // future enhancement ideas, flash closest led to active note
                   break;
               }
 
