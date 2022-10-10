@@ -52,7 +52,7 @@ int s2 = 6;
 int s3 = 7;
 byte data;
 int dataRead = 3;
-int trigRead = 9; // 8 or 9 can be used, incase you solder the wrong pin like I just did :-)
+int trigRead = 8; // 8 or 9 can be used, incase you solder the wrong pin like I just did :-)
 
 int controlPin[] = {s0, s1, s2, s3};
 
@@ -130,6 +130,8 @@ pinMode(trigRead, INPUT);
   }
   outputTrigger(); // setup last saved state.
 
+
+
 }
 
 int noteToVolt(int noteIn) {
@@ -162,14 +164,14 @@ if (millis() - clock_tick > CLOCK_TIME){
             LED_STATE_STRUCT[i].ON = true;
             LED_STATE_STRUCT[i].time_triggered = millis();
             outputTrigger();
-            EEPROM.update(i, 1);
+           EEPROM.update(i, 1);
         } else 
         if (LED_STATE_STRUCT[i].ON == true && millis () - LED_STATE_STRUCT[i].time_triggered > RE_TRIGGER_THRESHOLD){
           
             LED_STATE_STRUCT[i].ON = false;
             LED_STATE_STRUCT[i].time_triggered = millis();    //      EEPROM.update(i, 0);
             outputTrigger();
-            EEPROM.update(i, 0);
+           EEPROM.update(i, 0);
         }
     }
 
@@ -260,12 +262,12 @@ Serial.println();
     if (newClockState != clockState) {
 
 
-
+/*
   for(int i = 0; i < 14; i ++){
       Serial.print(LED_STATE_STRUCT[i].ON);
   }
   Serial.println();
-
+*/
 
 
        
@@ -319,8 +321,9 @@ Serial.println();
 
               if (notes[iterator%NOTE_COUNT]) {
 
-              LED_STATE_STRUCT[iterator-3].TRIGGERED = true;
-              ledTrigger(); // future enhancement ideas, flash closest led to active note
+           //   LED_STATE_STRUCT[iterator-3].TRIGGERED = true;
+           //   Serial.println(iterator);
+          //   ledTrigger(); // future enhancement ideas, flash closest led to active note
                   break;
               }
 
@@ -341,8 +344,8 @@ secondEight = 0;
     
     digitalWrite(latchPin, LOW);
 
-        for (byte r = 8; r < 14; r++){
-         
+        for (byte r = 8; r < 16; r++){
+
            if (LED_STATE_STRUCT[r].ON == true){
               secondEight = (secondEight << 1) + 0x1;
             }else{
@@ -390,7 +393,7 @@ secondEight = 0;
 
     digitalWrite(latchPin, LOW);
 
-        for (byte r = 8; r < 14; r++){
+        for (byte r = 8; r < 16; r++){
          
            if (LED_STATE_STRUCT[r].ON == true && LED_STATE_STRUCT[r].TRIGGERED == false){
               secondEight = (secondEight << 1) + 0x1;
@@ -420,17 +423,22 @@ secondEight = 0;
 
 
 
+void testTrigger(){
+    // just used for testing shift register patterns working ok          
+firstEight = 0;
+secondEight = 0;
+
+    digitalWrite(latchPin, LOW);
+
+         
+    shiftOut(dataPin, clockPin, LSBFIRST, B11110000); //secondEight
 
 
-
-
-
-
-
-
-
-
-
-
+    shiftOut(dataPin, clockPin, LSBFIRST, B11111110); // firstEight
+    digitalWrite(latchPin, HIGH);
 
  
+}
+
+
+
