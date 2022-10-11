@@ -52,7 +52,7 @@ int s2 = 6;
 int s3 = 7;
 byte data;
 int dataRead = 3;
-int trigRead = 8; // 8 or 9 can be used, incase you solder the wrong pin like I just did :-)
+int trigRead = 9; // 8 or 9 can be used, incase you solder the wrong pin like I just did :-)
 
 int controlPin[] = {s0, s1, s2, s3};
 
